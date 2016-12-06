@@ -9,5 +9,10 @@ def hello_world():
 	
 @app.route('/req')
 def testing_requests():
-    r = requests.get('http://httpbin.org/status/404')
-    return str(r.status_code)
+    url = 'http://httpbin.org/'
+    r = requests.get(url)
+    if r.status_code == requests.codes.ok:
+        return '"%s" status: OK' % url
+    else:
+        return '"%s" status: NOT OK' % url
+        
