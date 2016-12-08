@@ -1,14 +1,14 @@
 import requests
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 websites = {
-    'http://httpbin.org/': 'OK', 
-    'http://httpbin.org/status/404': 'OK', 
+    'http://httpbin.org/': 'OK',
+    'http://httpbin.org/status/404': 'OK',
     'http://httpbin.org/status/500': 'OK'
     }
 
-# route() decorator tells Flask 
+# route() decorator tells Flask
 # what URL should trigger our function
 @app.route('/')
 def get_status():
@@ -18,6 +18,4 @@ def get_status():
             websites[url] = 'OK'
         else:
             websites[url] = 'NOT_OK'
-    return str(websites)
-
-        
+    return render_template('index.html', websites=websites)
