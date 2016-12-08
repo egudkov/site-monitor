@@ -1,2 +1,2 @@
 # site-monitor
-A web app that checks if site is available.
+A web app that checks if sites are available.
