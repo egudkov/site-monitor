@@ -7,11 +7,10 @@
       <dd><input type=submit value=Add>
     </dl>
   </form>
-<ul class=websites>
+<table border="1">
+  <tr><th>Url</th><th>Status</th>
 {% for site in websites %}
-  <li><h2>URL: {{ site.url }}</h2>Status: {{ site.status }}
-{% else %}
-  <li><em>No websites in the list so far.</em>
+  <tr><td>{{ site.url }}</td><td>{{ site.status }}</td>
 {% endfor %}
-</ul>
+</table>
 {% endblock %}

@@ -65,6 +65,15 @@ def show_websites():
     db = get_db()
     cur = db.execute('select url, status from websites order by id desc')
     websites = cur.fetchall()
+    for site in websites:
+        r = requests.get(site['url'])
+        if r.status_code == requests.codes.ok:
+            db.execute('update websites set status = "OK" where url = ?',
+                [site['url']])
+        else:
+            db.execute('update websites set status = "NOK" where url = ?',
+                [site['url']])
+        db.commit()
     return render_template('show_websites.html', websites=websites)
 
 
